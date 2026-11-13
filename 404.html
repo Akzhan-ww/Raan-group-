@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8+jFps/u5abyTXLkMjhR40ikhWkQa/pk9xi5kO2kjtw='; script-src-attr 'none'; style-src 'sha256-mzOLjDvGVue3kxB35My3cZtLcftNPtsev9K18/hFSLI='; style-src-attr 'none'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#202820">
@@ -40,21 +41,27 @@ h1{font-size:clamp(36px,4.5vw,64px);line-height:1.12;letter-spacing:-2px;margin:
 footer{padding-block:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
 footer p{margin:0}
 @media(max-width:767px){.header{align-items:flex-start;flex-direction:column;gap:8px;padding-block:20px}main{grid-template-columns:1fr;gap:32px;padding-block:16px 32px}h1{letter-spacing:-1.5px}.error-art{min-height:260px}.error-number{font-size:120px}.orbit{width:210px;height:210px}.orbit-two{width:300px;height:300px}.art-label{top:20px}.art-caption{bottom:20px}.art-label,.art-caption{left:20px;right:20px}.actions{flex-direction:column}.button{width:100%}}
+
+.language-switch{display:flex;gap:8px}
+.language-switch button{min-width:44px;min-height:44px;border:1px solid var(--muted);border-radius:7px;background:transparent;color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
+.language-switch button[aria-pressed="true"]{background:var(--lime)}
+.language-switch button:focus-visible{outline:3px solid #647d12;outline-offset:3px}
 </style>
 </head>
 <body>
 <header class="header">
 <a class="brand" href="/Raan-group-/" aria-label="Raan group — на главную"><span class="brand-icon"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>RAAN GROUP<span class="brand-dot">.</span></a>
 <p class="hours">Ежедневно 08:00–18:00 · Без выходных</p>
+<nav class="language-switch" aria-label="Язык сайта"><button type="button" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="kk" aria-pressed="false">KZ</button></nav>
 </header>
 <main>
 <section aria-labelledby="error-title">
 <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>ИНСТРУМЕНТ НА ВРЕМЯ. РЕЗУЛЬТАТ НАДОЛГО.</p>
 <h1 id="error-title">404 — Страница не найдена</h1>
-<p class="description">Возможно, ссылка устарела или в адресе есть ошибка. Вернитесь на главную, чтобы выбрать инструмент, или напишите нам — поможем с арендой.</p>
+<p class="description">Возможно, ссылка устарела или в адресе есть ошибка. Вернитесь на главную, чтобы выбрать инструмент и удобную точку аренды.</p>
 <div class="actions">
 <a class="button lime" href="/Raan-group-/">Вернуться на главную <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
-<a class="button outline" href="https://wa.me/77473143831" target="_blank" rel="noopener noreferrer">Написать в WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+<a class="button outline" href="/Raan-group-/#contacts">Выбрать точку аренды <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
 </div>
 </section>
 <div class="error-art" aria-hidden="true">
@@ -65,5 +72,29 @@ footer p{margin:0}
 </div>
 </main>
 <footer><p>Алматы · Байсерке · Отеген батыр</p><p>Raan group · Аренда инструментов</p></footer>
+<script>
+const translations={"404 — Страница не найдена | Raan group": "404 — Бет табылмады | Raan group", "Raan group — на главную": "Raan group — басты бетке", "Ежедневно 08:00–18:00 · Без выходных": "Күн сайын 08:00–18:00 · Демалыссыз", "ИНСТРУМЕНТ НА ВРЕМЯ. РЕЗУЛЬТАТ НАДОЛГО.": "ҚҰРАЛ УАҚЫТША. НӘТИЖЕ ҰЗАҚҚА.", "404 — Страница не найдена": "404 — Бет табылмады", "Возможно, ссылка устарела или в адресе есть ошибка. Вернитесь на главную, чтобы выбрать инструмент и удобную точку аренды.": "Сілтеме ескірген немесе мекенжайда қате болуы мүмкін. Құрал мен ыңғайлы жалға беру бөлімшесін таңдау үшін басты бетке оралыңыз.", "Вернуться на главную": "Басты бетке оралу", "Выбрать точку аренды": "Жалға беру бөлімшесін таңдау", "НУЖНЫЙ ИНСТРУМЕНТ НАЙДЁТСЯ.": "ҚАЖЕТТІ ҚҰРАЛ ТАБЫЛАДЫ.", "ВЕРНЁМСЯ К ВАШЕМУ ПРОЕКТУ.": "ЖОБАҢЫЗҒА ОРАЛАЙЫҚ.", "Алматы · Байсерке · Отеген батыр": "Алматы · Байсерке · Өтеген батыр", "Raan group · Аренда инструментов": "Raan group · Құралдарды жалға беру", "Язык сайта": "Сайт тілі"};
+const originalTitle=document.title;
+const textNodes=[];
+const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+while(walker.nextNode()){
+ const node=walker.currentNode;
+ if(!node.parentElement.closest('script,style')&&translations[node.textContent.trim()])textNodes.push([node,node.textContent]);
+}
+const labels=Array.from(document.querySelectorAll('[aria-label]'),el=>[el,el.getAttribute('aria-label')]);
+function setLanguage(next){
+ const language=next==='kk'?'kk':'ru';
+ const translate=text=>language==='kk'?(translations[text]||text):text;
+ document.documentElement.lang=language;
+ document.title=translate(originalTitle);
+ for(const [node,original] of textNodes)node.textContent=original.replace(original.trim(),translate(original.trim()));
+ for(const [el,label] of labels)el.setAttribute('aria-label',translate(label));
+ document.querySelectorAll('[data-lang]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.lang===language)));
+ try{localStorage.setItem('raan-language',language);}catch{}
+}
+document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.lang)));
+let savedLanguage='ru';try{savedLanguage=localStorage.getItem('raan-language')||'ru';}catch{}
+setLanguage(savedLanguage);
+</script>
 </body>
 </html>
